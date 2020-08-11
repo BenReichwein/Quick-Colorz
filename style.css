@@ -31,4 +31,9 @@ border-collapse: collapse;
     display: flex;
     align-items: center;
     flex-direction: column;
+  
+#countdown {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 25px 0 25px 0;
+    text-align: center;
 }
