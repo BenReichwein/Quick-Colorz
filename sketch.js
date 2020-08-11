@@ -1,22 +1,30 @@
-// globals
-var canvas;
-var canvasHeight = window.innerHeight;
-var canvasWidth = window.innerWidth;
+//sets height and width of table cells
+const width = 5;
+const height = 5;
+const cells = [];
 
-// setup function (called ONCE when the page first loads)
-function setup() {
-    // create canvas and append it to the page
-    canvas = createCanvas(canvasWidth, canvasHeight);
-    canvas.parent('parent');
+//creates table rows and columns based on width and height
+const table = document.createElement("tbody");
+for (let h = 0; h < height; h++) {
+  const tr = document.createElement("tr");
+  for (let w = 0; w < width; w++) {
+    const td = document.createElement("td");
+    td.dataset.row = h;
+    td.dataset.col = w;
+    cells.push(td);
+    tr.append(td);
+  }
+  table.append(tr);
+}
+document.getElementById("board").append(table);
+
+//generates random color
+function generateRandomColor() {
+    let randomColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
+    return randomColor;
 }
 
-// called when the window is resized
-function windowResized() {
-    // redefine the width and heights
-    canvasWidth = window.innerWidth;
-    canvasHeight = window.innerHeight;
-}
-// draw function (called 60 times per second)
-function draw() {
-    resizeCanvas(canvasWidth, canvasHeight); // resized canvas
-}
+//sets a random color of each table cell 
+let colorArr = cells.map(elem => {
+    return elem.style.backgroundColor = generateRandomColor()
+})
