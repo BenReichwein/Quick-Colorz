@@ -6,14 +6,32 @@
 html, body {
     height: 100%;
     width: 100%;
-    background-color: gray;
+    /* background-color: gray; */
 }
 
 #parent {
     height: 100%;
     width: 100%;
 }
+/* tr {
+    background-color: rgb(50, 202, 202);
+} */
 
+#board td{
+    border: 3px solid white;
+    width: 80px;
+    height: 80px;
+  }
+
+#board{
+border-collapse: collapse;
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  
 #countdown {
     font-family: Arial, Helvetica, sans-serif;
     padding: 25px 0 25px 0;
