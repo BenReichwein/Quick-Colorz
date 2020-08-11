@@ -1,22 +1,16 @@
-// globals
-var canvas;
-var canvasHeight = window.innerHeight;
-var canvasWidth = window.innerWidth;
+// # of seconds
+let timeLeft = 10;
 
-// setup function (called ONCE when the page first loads)
-function setup() {
-    // create canvas and append it to the page
-    canvas = createCanvas(canvasWidth, canvasHeight);
-    canvas.parent('parent');
-}
+let countdown = setInterval(() => {
+    // timer is completed
+    if (timeLeft < 0) {
+        clearInterval(countdown);
+        document.getElementById('countdown').innerHTML = "You are out of time!"
+        // this is the end state
+    } else {
+        // set timer to timeLeft variable
+        document.getElementById('countdown').innerHTML = timeLeft + " seconds remaining.";
+    }
+    timeLeft--;
+}, 1000)
 
-// called when the window is resized
-function windowResized() {
-    // redefine the width and heights
-    canvasWidth = window.innerWidth;
-    canvasHeight = window.innerHeight;
-}
-// draw function (called 60 times per second)
-function draw() {
-    resizeCanvas(canvasWidth, canvasHeight); // resized canvas
-}
