@@ -26,21 +26,42 @@ function generateRandomColor() {
 
 //sets a random color of each table cell 
 let colorArr = cells.map(elem => {
+    elem.addEventListener('mouseover', () => {
+        if(elem.style.backgroundColor === document.getElementById('color').style.backgroundColor) {
+            round()
+        }
+    })
     return elem.style.backgroundColor = generateRandomColor()
 })
+
+
+let randomColorLevel = Math.floor(Math.random() * colorArr.length)
+
+document.getElementById('color').style.backgroundColor = colorArr[randomColorLevel]
+document.getElementById('color').innerHTML = colorArr[randomColorLevel]
+
 
 // # of seconds
 let timeLeft = 10;
 
 let countdown = setInterval(() => {
     // timer is completed
-    if (timeLeft < 0) {
+    if (timeLeft <= 0) {
         clearInterval(countdown);
         document.getElementById('countdown').innerHTML = "You are out of time!"
         // this is the end state
+        alert('You Lost')
+        location.reload();
     } else {
         // set timer to timeLeft variable
-        document.getElementById('countdown').innerHTML = timeLeft + " seconds remaining.";
+        document.getElementById('countdown').innerHTML = `${timeLeft} seconds remaining.`;
     }
     timeLeft--;
 }, 1000)
+
+function round() {
+     if(timeLeft >= 1) {
+        alert('Winner')
+        location.reload();
+     }
+}
