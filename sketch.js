@@ -62,7 +62,6 @@ let countdown = setInterval(() => {
 
 function round() {
     if(timeLeft >= 1) {
-        alert('Winner')
         Score();
         Start();
         timeLeft = 10;
@@ -78,5 +77,5 @@ if (mode === 0) {
     Score();
     Start();
 } else {
-    
+
 }
