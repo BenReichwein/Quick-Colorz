@@ -5,13 +5,6 @@ const cells = [];
 let score = -1;
 let mode = 0;
 
-if (mode === 0) {
-    Score();
-    Start();
-} else {
-
-}
-
 //creates table rows and columns based on width and height
 const table = document.createElement("tbody");
 for (let h = 0; h < height; h++) {
@@ -81,4 +74,11 @@ function round() {
 function Score() {
     score++;
     document.getElementById('scorecount').innerHTML = `Score: ${score}`;
+}
+
+if (mode === 0) {
+    Score();
+    Start();
+} else {
+    
 }
