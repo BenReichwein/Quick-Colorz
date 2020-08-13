@@ -6,7 +6,8 @@
 html, body {
     height: 100%;
     width: 100%;
-    /* background-color: gray; */
+    background-color: lightgray;
+    font-family: sans-serif;
 }
 
 #parent {
@@ -21,10 +22,10 @@ html, body {
     border: 3px solid white;
     width: 80px;
     height: 80px;
-  }
+}
 
 #board{
-border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 #container {
@@ -32,9 +33,63 @@ border-collapse: collapse;
     align-items: center;
     flex-direction: column;
 }
+
+#header {
+    margin: 10px 0;
+}
   
 #countdown {
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 25px 0 25px 0;
+    /* margin-top: 20px; */
     text-align: center;
+    color: #219e72;
+    font-size: 48px;
+    font-weight: 800;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+}
+
+#startBtn {
+    border-radius: 50px;
+    background-color: #219e72;
+    color: white;
+    border: 1px solid white;
+    width: 125px;
+    height: 50px;
+    transition-duration: 0.2s;
+    outline: 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+    /* transition: background-color 2s;
+    transition: color 2s;
+    transition: border 2s; */
+}
+
+#startBtn:hover {
+    color: #187a58;
+    background-color: white;
+    border: 1px solid #187a58;
+}
+
+#startBtn:active {
+    outline: 0;
+    background-color: #cccccc;
+}
+
+#colorContainer {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#colorHeader {
+    order: 1;
+}
+
+#color {
+    width: 80px;
+    height: 80px;
+    margin-top: 10px;
+    order: 2;
+    border: 3px solid white;
 }

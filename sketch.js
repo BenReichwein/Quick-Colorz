@@ -22,7 +22,7 @@ document.getElementById("board").append(table);
 
 //generates random color
 function generateRandomColor() {
-    let randomColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
+    let randomColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
     return randomColor;
 }
 function Start() {
@@ -40,9 +40,7 @@ function Start() {
     let randomColorLevel = Math.floor(Math.random() * colorArr.length)
 
     document.getElementById('color').style.backgroundColor = colorArr[randomColorLevel]
-    document.getElementById('color').innerHTML = colorArr[randomColorLevel]
 }
-
 
 // # of seconds
 let timeLeft = 10;
