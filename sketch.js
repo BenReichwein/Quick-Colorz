@@ -26,7 +26,7 @@ function generateRandomColor() {
 
 //sets a random color of each table cell 
 let colorArr = cells.map(elem => {
-    elem.addEventListener('mouseover', () => {
+    elem.addEventListener('mousedown', () => {
         if(elem.style.backgroundColor === document.getElementById('color').style.backgroundColor) {
             round()
         }
