@@ -33,31 +33,28 @@ let colorArr = cells.map(elem => {
     })
     return elem.style.backgroundColor = generateRandomColor()
 })
-console.log(colorArr)
 
 let randomColorLevel = Math.floor(Math.random() * colorArr.length)
-console.log(randomColorLevel)
-document.getElementById('color').style.backgroundColor = colorArr[randomColorLevel]
-// document.getElementById('color').innerHTML = colorArr[randomColorLevel]
 
+document.getElementById('color').style.backgroundColor = colorArr[randomColorLevel]
 
 // # of seconds
 let timeLeft = 10;
 
-let countdown = setInterval(() => {
-    // timer is completed
-    if (timeLeft <= 0) {
-        clearInterval(countdown);
-        document.getElementById('countdown').innerHTML = "You are out of time!"
-        // this is the end state
-        alert('You Lost')
-        location.reload();
-    } else {
-        // set timer to timeLeft variable
-        document.getElementById('countdown').innerHTML = `${timeLeft} seconds remaining.`;
-    }
-    timeLeft--;
-}, 1000)
+// let countdown = setInterval(() => {
+//     // timer is completed
+//     if (timeLeft <= 0) {
+//         clearInterval(countdown);
+//         document.getElementById('countdown').innerHTML = "You are out of time!"
+//         // this is the end state
+//         alert('You Lost')
+//         location.reload();
+//     } else {
+//         // set timer to timeLeft variable
+//         document.getElementById('countdown').innerHTML = timeLeft;
+//     }
+//     timeLeft--;
+// }, 1000)
 
 function round() {
      if(timeLeft >= 1) {
