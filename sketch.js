@@ -43,7 +43,7 @@ function Start() {
 }
 
 // # of seconds
-let timeLeft = 10;
+let timeLeft = 9;
 
 let countdown = setInterval(() => {
     // timer is completed
@@ -51,7 +51,7 @@ let countdown = setInterval(() => {
         clearInterval(countdown);
         document.getElementById('countdown').innerHTML = "You are out of time!"
         // this is the end state
-        alert('You Lost')
+        // alert('You Lost')
         mode++;
     } else {
         // set timer to timeLeft variable
@@ -70,7 +70,7 @@ function round() {
 
 function Score() {
     score++;
-    document.getElementById('scorecount').innerHTML = `Score: ${score}`;
+    document.getElementById('scorecount').innerHTML = `${score}`;
 }
 
 if (mode === 0) {
