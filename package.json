@@ -4,7 +4,7 @@
   "description": "Space themed Written Weekly - some type of space invaders or asteroids mockup.",
   "main": "sketch.js",
   "scripts": {
-    "start": "nodemon server/server.js"
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
