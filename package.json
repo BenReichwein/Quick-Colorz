@@ -1,0 +1,24 @@
+{
+  "name": "TimeGame",
+  "version": "1.0.0",
+  "description": "Space themed Written Weekly - some type of space invaders or asteroids mockup.",
+  "main": "sketch.js",
+  "scripts": {
+    "start": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenReichwein/TimeGame.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenReichwein/TimeGame/issues"
+  },
+  "homepage": "https://github.com/BenReichwein/TimeGame#readme",
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "socket.io": "^2.3.0"
+  }
+}
