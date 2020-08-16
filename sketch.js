@@ -4,21 +4,22 @@ let height = 5;
 let cells = [];
 let score = -1;
 let mode = 0;
+let finalColor = null
 // # of seconds
 let timeLeft = 9;
 const userScore = document.getElementById('scorecount')
 const playerBoard = document.getElementById('board')
 
-// playerBoard.addEventListener('click', () => {
-//     console.log(userScore.innerHTML)
-    
-// })
-
-
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})`
+    : null;
+  }
 
 function updateTable (width, height) {
     if(cells.length) {
         let tableBody = document.getElementsByTagName('tbody')
+        cells = []
         tableBody[0].remove()
     }
     let table = document.createElement("tbody");
@@ -63,22 +64,29 @@ function Start() {
         })
         return elem.style.backgroundColor = generateRandomColor()
     })
-
-
     let randomColorIndex = Math.floor(Math.random() * colorArr.length)
-
     document.getElementById('color').style.backgroundColor = colorArr[randomColorIndex]
+    for(elem of cells) {
+        if(elem.style.backgroundColor === hexToRgb(colorArr[randomColorIndex])) {
+            finalColor =  elem
+        }
+    }
 }
 
-
+const startBtn = document.getElementById('startBtn')
+startBtn.addEventListener('click', () => {
+    location.reload()
+    return false
+})
 
 let countdown = setInterval(() => {
     // timer is completed
     if (timeLeft <= 0) {
         clearInterval(countdown);
         document.getElementById('countdown').innerHTML = "You are out of time!"
-        // this is the end state
-        // alert('You Lost')
+        finalColor.style.transform = 'scale(1.2)'
+        finalColor.style.borderRadius = '10px'
+        // alert(`Time is up. You scored ${score}`)
         mode++;
     } else {
         // set timer to timeLeft variable
@@ -87,8 +95,14 @@ let countdown = setInterval(() => {
     timeLeft--;
 }, 1000)
 
+const audio = document.getElementById('audio')
+function playAudio() {
+    audio.volume = 0.2
+    audio.play()
+}
 function round() {
     if(timeLeft >= 1) {
+        playAudio()
         Score();
         Start();
         timeLeft = 10;
