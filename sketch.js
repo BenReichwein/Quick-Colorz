@@ -48,7 +48,7 @@ function Start() {
     //sets a random color of each table cell
     let colorArr = cells.map(elem => {
         elem.addEventListener('mousedown', () => {
-            if(elem.style.backgroundColor === document.getElementById('color').style.backgroundColor) {
+            if(elem.style.backgroundColor === document.getElementById('color').style.backgroundColor && timeLeft >= 1) {
                 if(userScore.innerHTML >= 5 && userScore.innerHTML <= 10) {
                     width = 6
                     height = 6
