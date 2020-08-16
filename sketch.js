@@ -1,24 +1,42 @@
 // Width and Height
-const width = 5;
-const height = 5;
-const cells = [];
+let width = 5;
+let height = 5;
+let cells = [];
 let score = -1;
 let mode = 0;
+// # of seconds
+let timeLeft = 9;
+const userScore = document.getElementById('scorecount')
+const playerBoard = document.getElementById('board')
 
-//creates table rows and columns based on width and height
-const table = document.createElement("tbody");
-for (let h = 0; h < height; h++) {
-    const tr = document.createElement("tr");
-    for (let w = 0; w < width; w++) {
-        const td = document.createElement("td");
-        td.dataset.row = h;
-        td.dataset.col = w;
-        cells.push(td);
-        tr.append(td);
+// playerBoard.addEventListener('click', () => {
+//     console.log(userScore.innerHTML)
+    
+// })
+
+
+
+function updateTable (width, height) {
+    if(cells.length) {
+        let tableBody = document.getElementsByTagName('tbody')
+        tableBody[0].remove()
     }
-    table.append(tr);
+    let table = document.createElement("tbody");
+    //creates table rows and columns based on width and height
+    for (let h = 0; h < height; h++) {
+        let tr = document.createElement("tr");
+        for (let w = 0; w < width; w++) {
+            let td = document.createElement("td");
+            td.dataset.row = h;
+            td.dataset.col = w;
+            cells.push(td);
+            tr.append(td);
+        }
+        table.append(tr);
+    }
+    document.getElementById("board").append(table);
 }
-document.getElementById("board").append(table);
+updateTable(width, height)
 
 //generates random color
 function generateRandomColor() {
@@ -30,6 +48,16 @@ function Start() {
     let colorArr = cells.map(elem => {
         elem.addEventListener('mousedown', () => {
             if(elem.style.backgroundColor === document.getElementById('color').style.backgroundColor) {
+                if(userScore.innerHTML >= 5 && userScore.innerHTML <= 10) {
+                    width = 6
+                    height = 6
+                    updateTable(width, height)
+            
+                } else if(userScore.innerHTML > 10) {
+                    width = 7
+                    height = 7
+                    updateTable(width, height)
+                }
                 round()
             }
         })
@@ -37,13 +65,12 @@ function Start() {
     })
 
 
-    let randomColorLevel = Math.floor(Math.random() * colorArr.length)
+    let randomColorIndex = Math.floor(Math.random() * colorArr.length)
 
-    document.getElementById('color').style.backgroundColor = colorArr[randomColorLevel]
+    document.getElementById('color').style.backgroundColor = colorArr[randomColorIndex]
 }
 
-// # of seconds
-let timeLeft = 9;
+
 
 let countdown = setInterval(() => {
     // timer is completed

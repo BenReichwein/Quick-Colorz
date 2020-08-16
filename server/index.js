@@ -8,7 +8,7 @@ startButton.addEventListener('click', () => {
     socket.emit('new-user', playerScore.innerHTML)
     socket.on('player-score', data => {
         console.log(data)
-        alert(`${data.user} Scored ${data.score}`)
+        alert(`${data} Scored ${data.score}`)
     })
 })
 

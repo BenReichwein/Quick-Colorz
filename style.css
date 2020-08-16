@@ -93,3 +93,9 @@ html, body {
     order: 2;
     border: 3px solid white;
 }
+
+td:hover {
+    transition-duration: .08s;
+    transform: scale(1.1);
+    border-radius: 5px;
+}
