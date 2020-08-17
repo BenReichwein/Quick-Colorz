@@ -3,10 +3,12 @@
 
 ## [Live Demo](https://quick-colorz.herokuapp.com)
 
-[![Image from Gyazo](https://i.gyazo.com/2cb3163f1da7130978b0728df9977204.gif)](https://gyazo.com/2cb3163f1da7130978b0728df9977204)
+[![Image from Gyazo](https://i.gyazo.com/28b68f31887b8506a9012e62a096ac99.gif)](https://gyazo.com/28b68f31887b8506a9012e62a096ac99)
 
 ## Contributing
 For major changes, please open an issue first to discuss what you would like to change.
 
 ## Authors
+* [Graham Billington](https://github.com/Gbillington1)
+* [Ben Reichwein](https://github.com/BenReichwein)
 * [Ian Gelfand](https://github.com/IanGelfand)
