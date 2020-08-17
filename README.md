@@ -11,10 +11,12 @@ Clone the repository as such:
 
 ```bash
 git clone https://github.com/BenReichwein/TimeGame
+
 cd TimeGame
+
 npm start
 ```
-* Use live server to open the trivia game.
+* Use live server to open quick colorz.
 
 or
 
