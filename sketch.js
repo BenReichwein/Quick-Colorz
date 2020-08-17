@@ -6,6 +6,7 @@ let score = -1;
 let mode = 0;
 let multOfFiveCount = 0;
 let finalColor = null
+
 // # of seconds
 let timeLeft = 9;
 const userScore = document.getElementById('scorecount')
@@ -54,20 +55,10 @@ function Start() {
                 if (multOfFiveCount == 5) {
                     multOfFiveCount = 0;
                     width++;
-                    height++; 
+                    height++;
                     updateTable(width, height)
                 }
-                // if (userScore.innerHTML >= 5 && userScore.innerHTML <= 10) {
-                //     width = 6
-                //     height = 6
-                //     updateTable(width, height)
-
-                // } else if (userScore.innerHTML > 10) {
-                //     width = 7
-                //     height = 7
-                //     updateTable(width, height)
-                // }
-                round()
+                round();
             }
         })
         return elem.style.backgroundColor = generateRandomColor()
@@ -87,21 +78,23 @@ startBtn.addEventListener('click', () => {
     return false
 })
 
-let countdown = setInterval(() => {
-    // timer is completed
-    if (timeLeft <= 0) {
-        clearInterval(countdown);
-        document.getElementById('countdown').innerHTML = "You are out of time!"
-        finalColor.style.transform = 'scale(1.2)'
-        finalColor.style.borderRadius = '10px'
-        // alert(`Time is up. You scored ${score}`)
-        mode++;
-    } else {
-        // set timer to timeLeft variable
-        document.getElementById('countdown').innerHTML = `${timeLeft} seconds remaining.`;
-    }
-    timeLeft--;
-}, 1000)
+function timer() {
+    return setInterval(() => {
+        // timer is completed
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            document.getElementById('countdown').innerHTML = "You are out of time!"
+            finalColor.classList.add('finalColor');
+            // alert(`Time is up. You scored ${score}`)
+            mode++;
+        } else {
+            // set timer to timeLeft variable
+            document.getElementById('countdown').innerHTML = `${timeLeft} seconds remaining.`;
+        }
+        timeLeft--;
+    }, 1000)
+}
+let countdown = timer();
 
 function reset() {
     width = 5;
@@ -109,6 +102,8 @@ function reset() {
     updateTable(width, height);
     Start();
     timeLeft = 10;
+    clearInterval(countdown);
+    countdown = timer();
     document.getElementById('countdown').innerHTML = `${timeLeft} seconds remaining.`;
     score = -1;
     Score();
