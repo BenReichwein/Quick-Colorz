@@ -4,6 +4,7 @@ let height = 5;
 let cells = [];
 let score = -1;
 let mode = 0;
+let multOfFiveCount = 0;
 let finalColor = null
 // # of seconds
 let timeLeft = 9;
@@ -13,11 +14,11 @@ const playerBoard = document.getElementById('board')
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})`
-    : null;
-  }
+        : null;
+}
 
-function updateTable (width, height) {
-    if(cells.length) {
+function updateTable(width, height) {
+    if (cells.length) {
         let tableBody = document.getElementsByTagName('tbody')
         cells = []
         tableBody[0].remove()
@@ -44,21 +45,28 @@ function generateRandomColor() {
     let randomColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
     return randomColor;
 }
+
 function Start() {
     //sets a random color of each table cell
     let colorArr = cells.map(elem => {
         elem.addEventListener('mousedown', () => {
-            if(elem.style.backgroundColor === document.getElementById('color').style.backgroundColor && timeLeft >= 1) {
-                if(userScore.innerHTML >= 5 && userScore.innerHTML <= 10) {
-                    width = 6
-                    height = 6
-                    updateTable(width, height)
-            
-                } else if(userScore.innerHTML > 10) {
-                    width = 7
-                    height = 7
+            if (elem.style.backgroundColor === document.getElementById('color').style.backgroundColor && timeLeft >= 1) {
+                if (multOfFiveCount == 5) {
+                    multOfFiveCount = 0;
+                    width++;
+                    height++; 
                     updateTable(width, height)
                 }
+                // if (userScore.innerHTML >= 5 && userScore.innerHTML <= 10) {
+                //     width = 6
+                //     height = 6
+                //     updateTable(width, height)
+
+                // } else if (userScore.innerHTML > 10) {
+                //     width = 7
+                //     height = 7
+                //     updateTable(width, height)
+                // }
                 round()
             }
         })
@@ -66,16 +74,16 @@ function Start() {
     })
     let randomColorIndex = Math.floor(Math.random() * colorArr.length)
     document.getElementById('color').style.backgroundColor = colorArr[randomColorIndex]
-    for(elem of cells) {
-        if(elem.style.backgroundColor === hexToRgb(colorArr[randomColorIndex])) {
-            finalColor =  elem
+    for (elem of cells) {
+        if (elem.style.backgroundColor === hexToRgb(colorArr[randomColorIndex])) {
+            finalColor = elem
         }
     }
 }
 
 const startBtn = document.getElementById('startBtn')
 startBtn.addEventListener('click', () => {
-    location.reload()
+    reset();
     return false
 })
 
@@ -95,22 +103,35 @@ let countdown = setInterval(() => {
     timeLeft--;
 }, 1000)
 
+function reset() {
+    width = 5;
+    height = 5;
+    updateTable(width, height);
+    Start();
+    timeLeft = 10;
+    document.getElementById('countdown').innerHTML = `${timeLeft} seconds remaining.`;
+    score = -1;
+    Score();
+}
+
 const audio = document.getElementById('audio')
 function playAudio() {
     audio.volume = 0.2
     audio.play()
 }
+
 function round() {
-    if(timeLeft >= 1) {
+    if (timeLeft >= 1) {
+        timeLeft = 10;
         playAudio()
         Score();
         Start();
-        timeLeft = 10;
     }
 }
 
 function Score() {
     score++;
+    multOfFiveCount++;
     document.getElementById('scorecount').innerHTML = `${score}`;
 }
 
