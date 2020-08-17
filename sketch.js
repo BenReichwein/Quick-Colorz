@@ -4,7 +4,9 @@ let height = 5;
 let cells = [];
 let score = -1;
 let mode = 0;
+let multOfFiveCount = 0;
 let finalColor = null
+
 // # of seconds
 let timeLeft = 9;
 const userScore = document.getElementById('scorecount')
@@ -13,11 +15,11 @@ const playerBoard = document.getElementById('board')
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})`
-    : null;
-  }
+        : null;
+}
 
-function updateTable (width, height) {
-    if(cells.length) {
+function updateTable(width, height) {
+    if (cells.length) {
         let tableBody = document.getElementsByTagName('tbody')
         cells = []
         tableBody[0].remove()
@@ -44,73 +46,87 @@ function generateRandomColor() {
     let randomColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
     return randomColor;
 }
+
 function Start() {
     //sets a random color of each table cell
     let colorArr = cells.map(elem => {
         elem.addEventListener('mousedown', () => {
-            if(elem.style.backgroundColor === document.getElementById('color').style.backgroundColor) {
-                if(userScore.innerHTML >= 5 && userScore.innerHTML <= 10) {
-                    width = 6
-                    height = 6
-                    updateTable(width, height)
-            
-                } else if(userScore.innerHTML > 10) {
-                    width = 7
-                    height = 7
+            if (elem.style.backgroundColor === document.getElementById('color').style.backgroundColor && timeLeft >= 1) {
+                if (multOfFiveCount == 5) {
+                    multOfFiveCount = 0;
+                    width++;
+                    height++;
                     updateTable(width, height)
                 }
-                round()
+                round();
             }
         })
         return elem.style.backgroundColor = generateRandomColor()
     })
     let randomColorIndex = Math.floor(Math.random() * colorArr.length)
     document.getElementById('color').style.backgroundColor = colorArr[randomColorIndex]
-    for(elem of cells) {
-        if(elem.style.backgroundColor === hexToRgb(colorArr[randomColorIndex])) {
-            finalColor =  elem
+    for (elem of cells) {
+        if (elem.style.backgroundColor === hexToRgb(colorArr[randomColorIndex])) {
+            finalColor = elem
         }
     }
 }
 
 const startBtn = document.getElementById('startBtn')
 startBtn.addEventListener('click', () => {
-    location.reload()
+    reset();
     return false
 })
 
-let countdown = setInterval(() => {
-    // timer is completed
-    if (timeLeft <= 0) {
-        clearInterval(countdown);
-        document.getElementById('countdown').innerHTML = "You are out of time!"
-        finalColor.style.transform = 'scale(1.2)'
-        finalColor.style.borderRadius = '10px'
-        // alert(`Time is up. You scored ${score}`)
-        mode++;
-    } else {
-        // set timer to timeLeft variable
-        document.getElementById('countdown').innerHTML = `${timeLeft} seconds remaining.`;
-    }
-    timeLeft--;
-}, 1000)
+function timer() {
+    return setInterval(() => {
+        // timer is completed
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            document.getElementById('countdown').innerHTML = "You are out of time!"
+            finalColor.classList.add('finalColor');
+            // alert(`Time is up. You scored ${score}`)
+            mode++;
+        } else {
+            // set timer to timeLeft variable
+            document.getElementById('countdown').innerHTML = `${timeLeft} seconds remaining.`;
+        }
+        timeLeft--;
+    }, 1000)
+}
+let countdown = timer();
+
+function reset() {
+    width = 5;
+    height = 5;
+    updateTable(width, height);
+    Start();
+    timeLeft = 10;
+    clearInterval(countdown);
+    countdown = timer();
+    document.getElementById('countdown').innerHTML = `${timeLeft} seconds remaining.`;
+    score = -1;
+    Score();
+}
 
 const audio = document.getElementById('audio')
 function playAudio() {
     audio.volume = 0.2
     audio.play()
 }
+
 function round() {
-    if(timeLeft >= 1) {
+    if (timeLeft >= 1) {
+        timeLeft = 10;
         playAudio()
         Score();
         Start();
-        timeLeft = 10;
     }
 }
 
 function Score() {
     score++;
+    multOfFiveCount++;
     document.getElementById('scorecount').innerHTML = `${score}`;
 }
 

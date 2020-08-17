@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Time Game</title>
     <link rel="stylesheet" href="style.css">
@@ -7,23 +8,29 @@
     <script defer src="server/index.js"></script>
     <script defer src="sketch.js"></script>
 </head>
+
 <body>
-    <audio id="audio" src="Ding Sound Effect.mp3"></audio>
+    <audio id="audio" src="winSound.mp3"></audio>
     <div id="container">
         <h1 id="header">Quick Colors</h1>
-        <h1>Score: <span id="scorecount"></span></h1>
-        <button id="startBtn">Restart</button> 
+        <div id="info">
+            <h1>Score: <span id="scorecount"></span></h1>
+            <button id="startBtn">Restart</button>
+        </div>
         <h3 id="countdown">10 seconds remaining.</h3>
         <div id="colorContainer">
             <h3 id="colorHeader">Find this color, and <em>click</em> it!</h3>
             <div id="color"></div>
         </div>
         <table id="board"></table>
-        <div id="message-container"></div>
-  <form id="send-container">
-    <input type="text" id="message-input">
-    <button type="submit" id="send-button">Send</button>
-  </form>
+        <div id="messages">
+            <div id="message-container"></div>
+            <form id="send-container">
+                <input type="text" id="message-input" placeholder="Type a message!">
+                <button type="submit" id="send-button">Send</button>
+            </form>
+        </div>
     </div>
 </body>
+
 </html>
