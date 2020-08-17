@@ -5,6 +5,21 @@
 
 [![Image from Gyazo](https://i.gyazo.com/28b68f31887b8506a9012e62a096ac99.gif)](https://gyazo.com/28b68f31887b8506a9012e62a096ac99)
 
+## Installation
+
+Clone the repository as such:
+
+```bash
+git clone https://github.com/BenReichwein/TimeGame
+cd TimeGame
+npm start
+```
+* Use live server to open the trivia game.
+
+or
+
+* Paste the index.html file path into your browser url bar.
+
 ## Contributing
 For major changes, please open an issue first to discuss what you would like to change.
 
